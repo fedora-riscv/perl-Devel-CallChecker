@@ -1,30 +1,34 @@
 # This file is licensed under the terms of GNU GPLv2+.
 Name:           perl-Devel-CallChecker
-Version:        0.004
+Version:        0.005
 Release:        1%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Devel-CallChecker/
 Source0:        http://www.cpan.org/authors/id/Z/ZE/ZEFRAM/Devel-CallChecker-%{version}.tar.gz
-BuildRequires:  perl(DynaLoader::Functions)
+BuildRequires:  perl(Module::Build)
+# Run-time
+BuildRequires:  perl(DynaLoader)
+BuildRequires:  perl(DynaLoader::Functions) >= 0.001
+BuildRequires:  perl(Exporter)
+BuildRequires:  perl(IO::File) >= 1.03
+BuildRequires:  perl(parent)
+# Tests
 BuildRequires:  perl(ExtUtils::CBuilder) >= 0.15
 BuildRequires:  perl(ExtUtils::ParseXS)
 BuildRequires:  perl(File::Spec)
-BuildRequires:  perl(IO::File) >= 1.03
-BuildRequires:  perl(Module::Build)
-BuildRequires:  perl(parent)
-# Tests:
-BuildRequires:  perl(DynaLoader)
-BuildRequires:  perl(Exporter)
 BuildRequires:  perl(Test::More)
-# Optional tests:
+# Optional tests
 BuildRequires:  perl(Test::Pod) >= 1.00
 BuildRequires:  perl(Test::Pod::Coverage)
+BuildRequires:  perl(threads)
+BuildRequires:  perl(Thread::Semaphore)
 # XXX: This package stores build-time Perl version and checks it at run-time.
 # This package must be recompiled on each Perl upgrade. See bug #754159.
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:       perl(DynaLoader)
+Requires:       perl(DynaLoader::Functions) >= 0.001
 Requires:       perl(Exporter)
 Requires:       perl(IO::File) >= 1.03
 
@@ -64,6 +68,9 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %{_mandir}/man3/*
 
 %changelog
+* Mon Feb 13 2012 Petr Pisar <ppisar@redhat.com> - 0.005-1
+- 0.005 bump
+
 * Thu Feb 02 2012 Petr Pisar <ppisar@redhat.com> - 0.004-1
 - 0.004 bump
 
