@@ -1,36 +1,36 @@
 # This file is licensed under the terms of GNU GPLv2+.
 Name:           perl-Devel-CallChecker
-Version:        0.005
-Release:        3%{?dist}
+Version:        0.006
+Release:        1%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Devel-CallChecker/
 Source0:        http://www.cpan.org/authors/id/Z/ZE/ZEFRAM/Devel-CallChecker-%{version}.tar.gz
+BuildRequires:  perl
 BuildRequires:  perl(Module::Build)
+BuildRequires:  perl(strict)
+BuildRequires:  perl(warnings)
 # Run-time
 BuildRequires:  perl(DynaLoader)
 BuildRequires:  perl(DynaLoader::Functions) >= 0.001
 BuildRequires:  perl(Exporter)
-BuildRequires:  perl(IO::File) >= 1.03
 BuildRequires:  perl(parent)
 # Tests
 BuildRequires:  perl(ExtUtils::CBuilder) >= 0.15
 BuildRequires:  perl(ExtUtils::ParseXS)
 BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(IO::File) >= 1.03
 BuildRequires:  perl(Test::More)
 # Optional tests
 BuildRequires:  perl(Test::Pod) >= 1.00
 BuildRequires:  perl(Test::Pod::Coverage)
 BuildRequires:  perl(threads)
+BuildRequires:  perl(threads::shared)
 BuildRequires:  perl(Thread::Semaphore)
-# XXX: This package stores build-time Perl version and checks it at run-time.
-# This package must be recompiled on each Perl upgrade. See bug #754159.
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
 Requires:       perl(DynaLoader)
 Requires:       perl(DynaLoader::Functions) >= 0.001
-Requires:       perl(Exporter)
-Requires:       perl(IO::File) >= 1.03
 
 %{?perl_default_filter}
 
@@ -49,13 +49,12 @@ without the centralized facility.)
 %setup -q -n Devel-CallChecker-%{version}
 
 %build
-%{__perl} Build.PL installdirs=vendor optimize="$RPM_OPT_FLAGS"
+perl Build.PL installdirs=vendor optimize="$RPM_OPT_FLAGS"
 ./Build
 
 %install
 ./Build install destdir=$RPM_BUILD_ROOT create_packlist=0
 find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -exec rm -f {} \;
-find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %{_fixperms} $RPM_BUILD_ROOT/*
 
 %check
@@ -68,6 +67,11 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %{_mandir}/man3/*
 
 %changelog
+* Mon Sep 23 2013 Petr Pisar <ppisar@redhat.com> - 0.006-1
+- 0.006 bump
+- This version should be compatible with any binary compatible perl version
+  (bug #754159)
+
 * Fri Jul 20 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.005-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
