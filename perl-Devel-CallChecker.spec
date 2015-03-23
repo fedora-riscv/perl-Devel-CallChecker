@@ -1,7 +1,7 @@
 # This file is licensed under the terms of GNU GPLv2+.
 Name:           perl-Devel-CallChecker
-Version:        0.006
-Release:        4%{?dist}
+Version:        0.007
+Release:        1%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -67,6 +67,9 @@ find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -exec rm -f {} \;
 %{_mandir}/man3/*
 
 %changelog
+* Mon Mar 23 2015 Petr Pisar <ppisar@redhat.com> - 0.007-1
+- 0.007 bump
+
 * Thu Aug 28 2014 Jitka Plesnikova <jplesnik@redhat.com> - 0.006-4
 - Perl 5.20 rebuild
 
