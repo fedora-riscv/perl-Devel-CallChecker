@@ -8,6 +8,8 @@ Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Devel-CallChecker/
 Source0:        http://www.cpan.org/authors/id/Z/ZE/ZEFRAM/Devel-CallChecker-%{version}.tar.gz
 BuildRequires:  perl
+BuildRequires:  perl-devel
+BuildRequires:  perl-generators
 BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(strict)
 BuildRequires:  perl(warnings)
