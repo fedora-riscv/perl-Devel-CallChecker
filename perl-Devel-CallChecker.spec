@@ -1,15 +1,17 @@
 # This file is licensed under the terms of GNU GPLv2+.
 Name:           perl-Devel-CallChecker
-Version:        0.007
-Release:        7%{?dist}
+Version:        0.008
+Release:        1%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Devel-CallChecker/
 Source0:        http://www.cpan.org/authors/id/Z/ZE/ZEFRAM/Devel-CallChecker-%{version}.tar.gz
-BuildRequires:  perl-interpreter
+BuildRequires:  findutils
+BuildRequires:  gcc
 BuildRequires:  perl-devel
 BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
 BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(strict)
 BuildRequires:  perl(warnings)
@@ -56,7 +58,7 @@ perl Build.PL installdirs=vendor optimize="$RPM_OPT_FLAGS"
 
 %install
 ./Build install destdir=$RPM_BUILD_ROOT create_packlist=0
-find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -exec rm -f {} \;
+find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -delete
 %{_fixperms} $RPM_BUILD_ROOT/*
 
 %check
@@ -69,6 +71,9 @@ find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -exec rm -f {} \;
 %{_mandir}/man3/*
 
 %changelog
+* Wed Jul 26 2017 Petr Pisar <ppisar@redhat.com> - 0.008-1
+- 0.008 bump
+
 * Mon Jun 05 2017 Jitka Plesnikova <jplesnik@redhat.com> - 0.007-7
 - Perl 5.26 rebuild
 
