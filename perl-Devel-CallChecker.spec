@@ -1,7 +1,7 @@
 # This file is licensed under the terms of GNU GPLv2+.
 Name:           perl-Devel-CallChecker
 Version:        0.008
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -71,6 +71,9 @@ find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -delete
 %{_mandir}/man3/*
 
 %changelog
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.008-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
 * Wed Jul 26 2017 Petr Pisar <ppisar@redhat.com> - 0.008-1
 - 0.008 bump
 
