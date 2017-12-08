@@ -1,4 +1,8 @@
 # This file is licensed under the terms of GNU GPLv2+.
+
+# Run optional test
+%bcond_without perl_Devel_CallChecker_enables_optional_test
+
 Name:           perl-Devel-CallChecker
 Version:        0.008
 Release:        2%{?dist}
@@ -26,12 +30,14 @@ BuildRequires:  perl(ExtUtils::ParseXS)
 BuildRequires:  perl(File::Spec)
 BuildRequires:  perl(IO::File) >= 1.03
 BuildRequires:  perl(Test::More)
+%if %{with perl_Devel_CallChecker_enables_optional_test}
 # Optional tests
 BuildRequires:  perl(Test::Pod) >= 1.00
 BuildRequires:  perl(Test::Pod::Coverage)
 BuildRequires:  perl(threads)
 BuildRequires:  perl(threads::shared)
 BuildRequires:  perl(Thread::Semaphore)
+%endif
 Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
 Requires:       perl(DynaLoader)
 Requires:       perl(DynaLoader::Functions) >= 0.001
