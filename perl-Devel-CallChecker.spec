@@ -1,7 +1,11 @@
 # This file is licensed under the terms of GNU GPLv2+.
 
 # Run optional test
+%if ! (0%{?rhel})
 %bcond_without perl_Devel_CallChecker_enables_optional_test
+%else
+%bcond_with perl_Devel_CallChecker_enables_optional_test
+%endif
 
 Name:           perl-Devel-CallChecker
 Version:        0.008
