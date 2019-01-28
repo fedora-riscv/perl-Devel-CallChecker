@@ -12,7 +12,6 @@ Version:        0.008
 Release:        5%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
-Group:          Development/Libraries
 URL:            https://metacpan.org/release/Devel-CallChecker
 Source0:        https://cpan.metacpan.org/authors/id/Z/ZE/ZEFRAM/Devel-CallChecker-%{version}.tar.gz
 BuildRequires:  findutils
