@@ -9,7 +9,7 @@
 
 Name:           perl-Devel-CallChecker
 Version:        0.008
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Custom op checking attached to subroutines
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Devel-CallChecker
@@ -80,6 +80,9 @@ find $RPM_BUILD_ROOT -type f -name '*.bs' -size 0 -delete
 %{_mandir}/man3/*
 
 %changelog
+* Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.008-12
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.008-11
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
